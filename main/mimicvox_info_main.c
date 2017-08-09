@@ -46,8 +46,6 @@
 #include "cst_args.h"
 #include "mimic.h"
 
-void *mimic_set_lang_list(void);
-
 int main(int argc, char **argv)
 {
     cst_features *args = new_features();
@@ -63,8 +61,7 @@ int main(int argc, char **argv)
                     "-info          Output general info on voice\n"
                     "set/get features in a mimicvox voice.", args);
 
-    mimic_init();
-    mimic_set_lang_list();
+    mimic_core_init();
 
     if (!feat_present(args, "-voice"))
     {
@@ -103,7 +100,7 @@ int main(int argc, char **argv)
         printf("%s \"%s\"\n", feat, feat_string(v->features, feat));
     }
 
-    mimic_exit();
+    mimic_core_exit();
 
     return 0;
 
